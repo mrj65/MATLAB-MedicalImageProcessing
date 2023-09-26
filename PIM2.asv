@@ -1,0 +1,153 @@
+
+disp("sec1")
+knex=imread('knex.jpeg');
+imshow(knex);
+knexD = double( knex )/255;
+
+D = im2double(knex);
+
+figure( 1), subplot(1,2,1), imshow ( knex )
+figure( 1), subplot (1,2,2), imshow ( knexD )
+%% 
+disp("sec2")
+E = imread("angio.jpg");
+
+F = rgb2gray(E);
+
+figure( 2), subplot(1,2,1), imshow ( E );
+figure( 2), subplot (1,2,2), imshow ( F );
+
+imwrite(E,"angio.png")
+imwrite(E,"angio.bmp")
+
+%% 
+disp("sec3")
+G=imresize ( imresize (E,1/2),2); 
+H=imresize ( imresize (E,1/4),4);
+I=imresize ( imresize (E,1/8),8);
+J=imresize ( imresize (E,1/16),16);
+K=imresize ( imresize (E,1/32),32); 
+
+% Create a figure and divide it into a 2x3 grid of subplots
+figure(3);
+subplot(2,3,1);
+imshow(E);
+title('Original Image');
+
+% Display each image in its own subplot
+subplot(2,3,2), imshow(G);
+title('G 1/2');
+
+subplot(2,3,3),imshow(H);
+title('H 1/4');
+
+subplot(2,3,4),imshow(I);
+title('I 1/8');
+
+subplot(2,3,5),imshow(J);
+title('J 1/16');
+
+subplot(2,3,6),imshow(K);
+title('K 1/32');
+%% 
+disp("sec4")
+knee_sum=A+50;
+knee_sub=A-50;
+
+figure( 4), subplot(1,3,2),imshow(A);
+figure( 4), subplot(1,3,1),imshow(knee_sum);
+figure( 4), subplot(1,3,3),imshow(knee_sub);
+
+
+knee_sum_sub = knee_sum-50;
+knee_sub_sum = knee_sub+50;
+
+figure(5)
+subplot(1,3,1), imshow(knee_sum_sub);
+title('Knee sum sub');
+
+subplot(1,3,2), imshow(A);
+title('Original Knee');
+
+subplot(1,3,3), imshow(knee_sub_sum);
+title('Knee sub sum');
+
+rest = abs(knee_sub_sum-A);
+
+rot30 = imrotate(B,30);
+rot_45 = imrotate(B,-45);
+
+
+figure(6)
+subplot(1,3,1), imshow(B);
+title('Original image');
+size(B)
+
+subplot(1,3,2), imshow(rot30);
+title('Knee rotated 30º');
+size(rot30)
+
+subplot(1,3,3), imshow(rot_45);
+title('Knee rotated -45º');
+size(rot_45)
+
+
+resized_rot30 = imrotate(rot30,-30);
+resized_rot_45 = imrotate(rot_45,45);
+
+
+figure(7)
+subplot(1,3,1), imshow(B);
+title('Original image');
+size(B)
+
+subplot(1,3,2), imshow(resized_rot30);
+title('Knee rotated 30º resized');
+size(resized_rot30)
+
+subplot(1,3,3), imshow(resized_rot_45);
+title('Knee rotated -45º resized');
+size(resized_rot_45)
+
+%% 
+disp("sec5")
+
+%% 
+disp("sec6/7")
+p= imread ('brain.jfif' );
+figure(7)
+subplot(2,2,1);
+imshow (p);
+subplot(2,2,2) ;
+imhist (p), axis tight;
+
+ 
+eh= histeq (p );
+subplot(2,2,3) ;
+imshow (eh);
+subplot(2,2,4);
+imhist (eh), axis tight;
+%% 
+disp("8 entropy")
+knex=imread('knex.jpeg');
+E = imread("angio.jpg");
+p= imread ('brain.jfif' );
+
+E_fun_p=entropy(p)
+E_cal_p=-sum(p.*log2(p))
+
+E_fun_knex=entropy(knex)
+E_cal_knex=-sum(p.*log2(knex))
+
+E_fun_E=entropy(E)
+E_cal_E=-sum(p.*log2(E))
+
+
+
+
+%  I can be multidimensional image. If I has more than two dimensions,
+   % it is treated as a multidimensional intensity image and not as an RGB image. 
+
+
+
+
